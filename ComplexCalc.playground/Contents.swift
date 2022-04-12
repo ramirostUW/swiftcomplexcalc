@@ -3,7 +3,90 @@ print("Welcome back to the UW Calculator")
 // Your job is to fill out Calculator so all the expressions
 // below both compile and return "true"
 class Calculator {
+    func add (lhs: Int, rhs: Int) -> Int{
+        return lhs + rhs;
+    }
     
+    func subtract (lhs: Int, rhs: Int) -> Int{
+        return lhs - rhs;
+    }
+    
+    func multiply (lhs: Int, rhs: Int) -> Int{
+        return lhs * rhs;
+    }
+    
+    func divide (lhs: Int, rhs: Int) -> Int{
+        return lhs / rhs;
+    }
+    
+    func mathOp (lhs: Int, rhs: Int, op: (Int, Int) -> Int) -> Int{
+        return op(lhs, rhs);
+    }
+    
+    func add(_ input: [Int]) -> Int{
+        var result = 0;
+        for element in input{
+            result = result + element;
+        }
+        return result
+    }
+    
+    func multiply(_ input: [Int]) -> Int{
+        var result = 1;
+        for element in input{
+            result = result * element;
+        }
+        return result
+    }
+    
+    func count(_ input: [Int]) -> Int{
+        var result = 0;
+        for element in input{
+            result = result + 1;
+        }
+        return result
+    }
+    
+    func avg(_ input: [Int]) -> Int{
+        var result = 0;
+        for element in input{
+            result = result + element;
+        }
+        result = result / input.count
+        return result
+    }
+    
+    func mathOp(args: [Int], beg: Int, op: (Int, Int) -> Int) -> Int{
+        var result = beg;
+        for element in args{
+            result = op(result, element);
+        }
+        return result;
+    }
+    
+    func add (lhs: (Int, Int), rhs: (Int, Int)) -> (Int, Int){
+        return ((lhs.0 + rhs.0), (lhs.1 + rhs.1));
+    }
+    
+    func subtract (lhs: (Int, Int), rhs: (Int, Int)) -> (Int, Int){
+        return ((lhs.0 - rhs.0), (lhs.1 - rhs.1));
+    }
+    
+    func add(lhs: [String:Int], rhs: [String:Int])-> [String:Int]{
+        let xval1 = lhs["x"]
+        let xval2 = rhs["x"]
+        let yval1 = lhs["y"]
+        let yval2 = rhs["y"]
+        return ["x":(xval1! + xval2!), "y": (yval1! + yval2!)]
+    }
+    
+    func subtract(lhs: [String:Int], rhs: [String:Int])-> [String:Int]{
+        let xval1 = lhs["x"]
+        let xval2 = rhs["x"]
+        let yval1 = lhs["y"]
+        let yval2 = rhs["y"]
+        return ["x":(xval1! - xval2!), "y": (yval1! - yval2!)]
+    }
 }
 
 let calc = Calculator()  // Don't change this declaration name; it's used in all the tests below
@@ -17,7 +100,7 @@ calc.subtract(lhs: 2, rhs: 2) == 0
 calc.multiply(lhs: 2, rhs: 2) == 4
 calc.divide(lhs: 2, rhs: 2) == 1
 
-calc.mathOp(lhs: 5, rhs: 5, op: { (lhs: Int, rhs: Int) -> Int in (lhs + rjs) + (lhs * rhs) }) == 35
+calc.mathOp(lhs: 5, rhs: 5, op: { (lhs: Int, rhs: Int) -> Int in (lhs + rhs) + (lhs * rhs) }) == 35
     // This style is one way of writing an anonymous function
 calc.mathOp(lhs: 10, rhs: -5, op: { ($0 + $1) + ($0 - $1) }) == 20
     // This is the second, more terse, style; either works
